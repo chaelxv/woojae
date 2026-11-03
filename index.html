@@ -3,46 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#fff0d9">
+<meta name="theme-color" content="#fce6cc">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="양우재와 둥">
-<link rel="icon" type="image/png" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="styles.css?v=4.0.1">
-<title>양우재와 둥의 소소한 하루 · v4</title>
+<meta name="apple-mobile-web-app-title" content="우재와 둥">
+<meta name="description" content="양우재와 둥의 소소한 하루 — 직접 돌보고, 옷을 입히고, 요리해 먹이는 아늑한 육성 게임">
+<link rel="apple-touch-icon" href="icon-192.png"><link rel="icon" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css?v=5.1">
+<title>양우재와 둥의 소소한 하루 · v5</title>
 </head>
 <body>
-<div class="app-shell">
-  <div class="appbar"><div class="appbar-brand"><span class="mini-logo">♥</span><span>양우재와 둥의 소소한 하루 <small>v4 · 리빌드</small></span></div><div class="appbar-actions"><span id="saveNotice" class="save-notice">자동 저장</span><button id="backupTop" type="button" class="bar-button">저장 백업</button><button id="helpButton" type="button" class="bar-button icon-only" aria-label="조작 방법 보기">?</button></div></div>
-  <div class="stage-viewport" id="stageViewport" aria-label="게임 화면. 모바일에서는 화면을 좌우로 밀어 보실 수 있습니다.">
-    <div class="stage" id="stage">
-      <img id="sceneImage" class="scene-image" src="assets/scenes/home.webp" alt="양우재와 둥이 지내는 아늑한 오렌지색 방" draggable="false">
-      <div class="stage-header"><div class="game-logo"><img src="assets/logo.webp" alt="양우재와 둥의 소소한 하루"></div><div class="hud-center"><span id="dateDisplay">1일차 · 오전 09:00</span><span id="statusQuick">포만감 75 · 기분 80</span></div><div class="hud-coins">● <strong id="coinsDisplay">350</strong><small>코인</small></div></div>
-      <div id="homeStats" class="home-stats" aria-label="양우재의 상태"></div>
-      <div id="sceneHotspots" class="scene-hotspots"></div>
-      <div id="gestureZone" class="gesture-zone hidden" aria-label="화면에서 손가락이나 마우스를 움직여 상호작용하세요"></div>
-      <div id="sceneOverlay" class="scene-overlay" aria-live="polite"></div>
-      <div id="effectsLayer" class="effects-layer" aria-hidden="true"></div>
-      <div id="nightShade" class="night-shade"></div>
-      <div class="status-floating" id="statusFloating" aria-live="polite"></div>
-      <div class="scene-footer" id="sceneFooter">가구를 눌러 직접 돌봐 주세요 ♡</div>
-    </div>
-  </div>
-  <nav class="scene-nav" aria-label="게임 화면 이동">
-    <button class="scene-tab selected" data-scene="home" type="button"><span class="tab-icon">⌂</span><span>우리 집</span></button>
-    <button class="scene-tab" data-scene="closet" type="button"><span class="tab-icon">♙</span><span>옷장</span></button>
-    <button class="scene-tab" data-scene="bath" type="button"><span class="tab-icon">♧</span><span>목욕</span></button>
-    <button class="scene-tab" data-scene="sleep" type="button"><span class="tab-icon">☾</span><span>재우기</span></button>
-    <button class="scene-tab" data-scene="cook" type="button"><span class="tab-icon">♨</span><span>요리</span></button>
-    <button class="scene-tab" data-scene="feed" type="button"><span class="tab-icon">♡</span><span>식사</span></button>
-  </nav>
-  <div class="interaction-bar"><div class="instruction"><strong id="instructionTitle">우리 집에 오신 것을 환영합니다!</strong><span id="instructionDetail">침대, 소파, 주방, 식탁 등의 가구를 누르거나 아래 메뉴를 선택해 주세요.</span></div><div id="actionButtons" class="action-buttons"></div></div>
-  <div class="footer-row"><span>음악 없는 조용한 육성 게임 · 모바일 / PC / macOS 브라우저</span><span>자동 저장 + 백업 파일 지원</span><div><button id="exportSave" type="button">백업 내보내기</button><button id="importSave" type="button">백업 불러오기</button><input id="saveFile" type="file" accept=".json,application/json" hidden></div></div>
+<div class="app" id="app">
+ <header class="topbar">
+  <button type="button" class="logo" data-view="home" title="우리 집으로"><img src="assets/characters/expressions/happy.png" alt=""><span>양우재와 둥의<em>소소한 하루</em></span><i>♡</i></button>
+  <div class="top-info"><span>☀ <b id="topDay">1일차</b></span><span id="topClock">오전 09:00</span><span>🟡 <b id="topCoins">350</b></span></div>
+  <div class="top-actions"><span class="save-mark" id="saveMark">● 자동 저장</span><button type="button" id="quickBackup" class="small-action">백업</button></div>
+ </header>
+ <nav class="tabs" id="tabs" aria-label="화면 선택">
+  <button type="button" data-view="home" class="tab active"><span>⌂</span>우리 집</button>
+  <button type="button" data-view="closet" class="tab"><span>✿</span>옷장</button>
+  <button type="button" data-view="bath" class="tab"><span>♧</span>목욕</button>
+  <button type="button" data-view="sleep" class="tab"><span>☾</span>재우기</button>
+  <button type="button" data-view="cook" class="tab"><span>♨</span>요리</button>
+  <button type="button" data-view="feed" class="tab"><span>♡</span>식사</button>
+  <button type="button" data-view="shop" class="tab"><span>◈</span>상점</button>
+  <button type="button" data-view="diary" class="tab"><span>✎</span>일기장</button>
+  <button type="button" data-view="settings" class="tab"><span>⚙</span>설정</button>
+ </nav>
+ <main id="main" class="main" tabindex="-1"></main>
+ <footer class="footer"><span>음악 없는 조용한 하루 · 모든 동작은 터치와 마우스로 즐기실 수 있습니다.</span><span>저장 데이터는 이 브라우저에 보관됩니다. 중요한 기록은 백업해 주세요.</span></footer>
 </div>
-<div class="toast" id="toast" role="status"></div>
-<dialog id="helpDialog" class="help-dialog"><h2>게임 조작 방법</h2><p>가구를 눌러 실제 행동을 시작해 주세요. 목욕은 손가락으로 문지르고, 수면은 이불을 위로 드래그한 다음 전등을 꺼 주시면 됩니다. 요리는 재료 드래그, 썰기, 섞기, 불 조절 순서로 진행됩니다.</p><p>진행 상황은 같은 브라우저에 자동 저장됩니다. 다른 기기로 이동하시거나 브라우저 기록을 정리하시기 전에는 백업 파일을 내보내 주세요.</p><button type="button" id="closeHelp">확인했습니다</button></dialog>
-<script src="game.js?v=4.0.1" defer></script>
+<div class="effects" id="effects" aria-hidden="true"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<dialog id="dialog" class="dialog"><div id="dialogContent"></div><button class="dialog-close" id="dialogClose" type="button">닫기</button></dialog>
+<script src="game.js?v=5.1" defer></script>
 </body>
 </html>
