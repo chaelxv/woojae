@@ -5,3 +5,121 @@
 
 /* Mobile: all five tabs remain accessible without a hidden horizontal row. */
 @media(max-width:460px){.nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;overflow:visible}.nav-button{min-width:0;flex-direction:column;gap:3px;padding:7px 1px;font-size:10px}.nav-button .nav-icon{font-size:19px}.room-object.woojae{height:34%}.room-object.doong{height:24%}}
+/* v3 · 직접 쓰다듬기 / 목욕 / 수면 / 요리 / 가구 상호작용 */
+.hidden{display:none!important}.modal-open{overflow:hidden}
+/* Clean uncropped full-body character cards */
+.wardrobe-list{gap:12px;padding:18px;overflow:visible}
+.outfit-option{position:relative;min-height:204px;justify-content:flex-end;padding:12px 8px 14px;overflow:visible;border-radius:18px;background:linear-gradient(180deg,#fffdf8,#fff3e4)}
+.outfit-option img{width:100%;height:158px;max-width:190px;object-fit:contain;object-position:center center;display:block;margin:auto;filter:drop-shadow(0 3px 1px #b78b6d22)}
+.outfit-option strong{font-size:12px;min-height:17px;line-height:1.4}
+.outfit-option.selected{box-shadow:inset 0 0 0 2px #d3996e,0 4px #e8c19f}
+.wardrobe-preview{overflow:visible}
+.mini-window{width:260px;max-width:100%;height:306px;overflow:visible;display:flex;align-items:center;justify-content:center;border-radius:48% 48% 20px 20px/25% 25% 20px 20px}
+.mini-window img{height:100%;width:100%;padding:15px;max-width:unset;max-height:unset;object-fit:contain;object-position:center}
+/* Furniture over the existing painted room. Whole image region works as tap target. */
+.furniture-hotspot{position:absolute;z-index:3;border:2px solid transparent;border-radius:12px;background:transparent;color:#845036;transition:background .18s,border-color .18s;display:flex;align-items:end;justify-content:center;user-select:none;-webkit-tap-highlight-color:transparent}
+.furniture-hotspot span{display:block;pointer-events:none;white-space:nowrap;font-size:clamp(9px,.95vw,12px);font-weight:900;background:#fff8edeb;border:1.5px solid #b78765aa;box-shadow:0 2px #bc896d33;border-radius:9px;padding:3px 7px;transform:translateY(3px);opacity:.77}
+.furniture-hotspot:hover,.furniture-hotspot:focus-visible{background:#ffe7b640;border-color:#ffcf8cab}
+.furniture-hotspot:hover span,.furniture-hotspot:focus-visible span{opacity:1;background:#fff6de}
+.furniture-bed{left:1%;top:26%;width:20%;height:32%}
+.furniture-sofa{left:3%;top:59%;width:23%;height:32%}
+.furniture-dining{left:72%;top:62%;width:24%;height:30%}
+.furniture-kitchen{left:79%;top:29%;width:20%;height:20%}
+.furniture-fridge{left:73%;top:24%;width:8%;height:27%}
+.furniture-wardrobe{left:54%;top:10%;width:13%;height:43%}
+.furniture-bookshelf{left:29%;top:31%;width:19%;height:21%}
+.furniture-bathroom{left:91%;top:50%;width:9%;height:11%;border:1px solid #dfb68a88;background:#fff5e6aa}
+.furniture-bathroom span{background:#e2f4f7e8}
+.dining-animation{position:absolute;left:78%;top:65%;width:18%;height:25%;z-index:9;display:flex;align-items:center;justify-content:center;pointer-events:none;transform:translate(-50%,-65%)}
+.dining-animation img{width:100%;max-height:100%;object-fit:contain;animation:dining-nom .65s ease-in-out infinite alternate;filter:drop-shadow(2px 3px 2px #744d4a38)}
+.dining-food{position:absolute;right:-12%;bottom:0;font-size:clamp(20px,3vw,40px);filter:drop-shadow(2px 3px 1px #7d5b376b)}
+.chew-hearts{position:absolute;right:2%;top:-7%;font-size:20px;color:#dd9581;animation:care-float 1.1s ease-in-out infinite alternate}
+@keyframes dining-nom{to{transform:translateY(-5px) rotate(2deg)}}
+@keyframes care-float{to{opacity:.45;transform:translateY(-13px)}}
+/* Care interaction modal */
+.care-modal{width:min(720px,100%);max-height:min(94dvh,850px);overflow:auto;border:4px solid #aa754e;border-radius:23px;box-shadow:0 19px 0 #4a302b22,0 26px 40px #25170e55;background:#fff8ed}
+.care-step{margin:15px auto 5px;padding:5px 15px;border-radius:40px;background:#ffecd0;border:1px solid #deb891;color:#a26d4a;font-size:12px;font-weight:900;width:max-content}
+.care-prompt{text-align:center;font-weight:900;font-size:clamp(12px,2vw,16px);padding:5px 18px 12px;line-height:1.65}
+.care-meter{height:17px;margin:0 25px 16px;border:2px solid #bc9676;background:#fff;border-radius:16px;overflow:hidden}
+.care-meter i{display:block;width:0;height:100%;background:linear-gradient(90deg,#ffd7a8,#ffb984,#f7a68f);border-radius:12px;transition:width .09s linear}
+.care-scene{position:relative;height:clamp(280px,48vh,450px);margin:0 20px 17px;border:3px solid #d5ab8b;overflow:hidden;border-radius:18px;background:repeating-linear-gradient(0deg,#fff0dc 0 29px,#f8dec0 29px 30px);isolation:isolate;user-select:none;-webkit-user-select:none}
+.care-modal-foot{text-align:center;font-weight:750;font-size:12px;padding:14px;border-top:2px dashed #edceae;background:#fff2df;color:#a77651}
+.care-gesture-zone{position:absolute;inset:0;z-index:15;touch-action:none;cursor:grab;-webkit-tap-highlight-color:transparent}
+.care-gesture-zone:active{cursor:grabbing}
+.care-vignette{text-align:center;font-size:13px;color:#a77757;padding:20px;font-weight:900;position:absolute;inset:0 0 auto}
+.care-pet{background:radial-gradient(ellipse at 50% 90%,#e9c39d 0 32%,transparent 33%),linear-gradient(#fffaf0,#ffefd7)}
+.pet-actors{height:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:18px 28px 3px}
+.pet-actors img{pointer-events:none;user-select:none;object-fit:contain;filter:drop-shadow(3px 6px 2px #a77b6236)}
+.pet-actors .care-boy{height:80%;width:48%;align-self:end}
+.pet-actors .care-dog{height:60%;width:38%;align-self:end;margin-bottom:22px;animation:gentle-bob 1.8s ease-in-out infinite alternate}
+@keyframes gentle-bob{to{transform:translateY(-5px)}}
+.care-spark{position:absolute;z-index:22;color:#f28c79;text-shadow:1px 1px #fff;font-size:23px;pointer-events:none;animation:care-pop .78s ease-out forwards}
+@keyframes care-pop{to{transform:translateY(-48px) scale(1.25);opacity:0}}
+.care-bath{background:linear-gradient(90deg,#b5dbe7 1px,transparent 1px),linear-gradient(#b5dbe7 1px,transparent 1px),linear-gradient(#eaf9fa,#c5e6ed);background-size:32px 32px,32px 32px,auto}
+.bath-wall{position:absolute;top:0;left:0;right:0;height:60%;background:radial-gradient(circle at 22% 29%,#fff7 0 10%,transparent 12%);pointer-events:none}
+.bath-tap{position:absolute;right:18%;top:10%;font-size:48px;filter:drop-shadow(2px 3px #618ba54d);z-index:2}
+.bath-characters{position:absolute;bottom:21%;height:69%;width:100%;display:flex;justify-content:center;z-index:3}
+.bath-characters img{height:100%;max-width:65%;object-fit:contain}
+.bath-bubbles{position:absolute;bottom:17%;text-align:center;left:15%;width:70%;font-size:42px;color:white;text-shadow:1px 1px #6197aa99;z-index:5;animation:gentle-bob 1s ease-in-out infinite alternate}
+.bath-tub{position:absolute;z-index:4;bottom:2%;left:18%;right:18%;height:41%;border:5px solid #aacbd1;border-radius:20px 20px 34% 34%;background:linear-gradient(#fffaf9,#d9f3f8);box-shadow:inset 0 -14px 0 #c5e4e8,0 10px #87b8bf44;display:flex;align-items:end;justify-content:center;font-size:43px;padding-bottom:7px}
+.bath-rim{position:absolute;top:-15px;left:-2%;width:104%;height:30px;border:5px solid #b2d9e1;border-radius:50%;background:#fbffff}
+.care-sleep{background:radial-gradient(circle at 75% 20%,#fff6d1 0,#ffefd3 50%,#e5c3aa 100%);transition:background .5s}
+.sleep-window{position:absolute;left:12%;top:10%;background:#95bcd6;color:#fff0c9;font-size:34px;width:115px;height:100px;border:11px solid #f3d1a5;border-radius:60px 60px 7px 7px;text-align:center;padding-top:10px}
+.sleep-lamp{position:absolute;right:17%;top:14%;font-size:44px;color:#f9c467;text-shadow:0 0 14px #ffedb1}
+.sleep-bed{position:absolute;left:20%;right:20%;bottom:6%;height:55%;display:flex;justify-content:center;align-items:center;background:linear-gradient(#f8d9a9,#edbf96);border:7px solid #b98665;border-radius:21px 21px 14px 14px;box-shadow:0 9px #b47d5e33}
+.sleep-bed img{max-width:70%;max-height:95%;object-fit:contain}
+.sleep-bed .sleep-dog{max-width:28%;max-height:52%;margin-left:-10%}
+.sleep-blanket{position:absolute;bottom:-8%;left:21%;width:58%;height:32%;z-index:8;background:repeating-linear-gradient(120deg,#f8dcc8 0 28px,#ffe9d5 28px 56px);border:4px solid #dcad92;border-radius:22px 22px 11px 11px;display:grid;place-items:center;transition:transform .14s ease-out;pointer-events:none}
+.sleep-blanket span{font-size:11px;color:#ab785b;font-weight:900;text-align:center}
+.sleep-blanket.tucked{transform:translateY(-74px)}
+.sleep-light-button{position:absolute;right:7%;top:10%;z-index:19;border-radius:14px;border:2px solid #ba865e;background:#ffe4b7;font-weight:900;padding:13px 20px;box-shadow:0 4px #d6b18d}
+.care-sleep.night{background:linear-gradient(#394a69,#6d758e)}.care-sleep.night .sleep-lamp{opacity:.08}.care-sleep.night .sleep-window{background:#293b67}.care-sleep.night .sleep-blanket{filter:brightness(.67)}
+.care-feed{background:radial-gradient(ellipse at center,#fffdf3,#ffe8cf)}
+.feeding-scene{padding:18px 14px;text-align:center;overflow:auto;height:100%}
+.feeding-title{font-size:17px;font-weight:900;margin-bottom:17px}
+.feed-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 auto 18px;max-width:520px}
+.feed-dish{display:flex;flex-direction:column;align-items:center;gap:4px;justify-content:center;border:2px solid #d7a47f;border-radius:16px;padding:9px;background:#fffdf8;box-shadow:0 4px #e5c9ac;min-height:115px}
+.feed-dish:hover{background:#fff1d7}.feed-emoji{font-size:35px}.feed-dish b{font-size:13px}.feed-dish small{font-size:10px;color:#b57d59}.feed-empty{grid-column:1/-1;padding:36px 15px;font-weight:800}
+/* Interactive kitchen mini game */
+.v3-cook-modal{width:min(725px,100%);max-height:94dvh;overflow:auto}
+.modal-recipe{font-size:30px!important;padding:13px 10px 4px!important}
+.mini-prompt{font-size:14px!important;line-height:1.6;min-height:38px}
+.cooking-play{padding:10px 13px 13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:300px;position:relative;background:repeating-linear-gradient(90deg,#fffaf2 0 38px,#fff3e4 38px 40px),#fff8ec}
+.cook-subhead{text-align:center;font-size:12px;font-weight:900;color:#946a4c;display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%}
+.cook-subhead span{color:#b77a53;border:1px solid #d9b99c;background:#fff;border-radius:8px;padding:4px 7px;white-space:nowrap}
+.prep-surface{width:100%;height:260px;display:grid;grid-template-rows:1fr 75px;justify-items:center;gap:5px}
+.prep-target{display:flex;align-items:center;justify-content:center;gap:3px;width:min(400px,95%);height:160px;border:5px solid #b47d55;border-radius:20px;background:repeating-linear-gradient(90deg,#eebd83 0 40px,#f6ca95 40px 80px);box-shadow:0 9px #c18c5a55,inset 0 0 0 5px #ffdfac;font-size:35px;position:relative}
+.prep-target small{position:absolute;bottom:12px;left:0;width:100%;font-size:12px;color:#925d35;font-weight:900}
+.prep-target.accepted{box-shadow:0 0 18px #f7bd75,inset 0 0 0 5px #ffdfac}
+.prepped-ingredient{font-size:33px;position:relative;top:-12px}
+.ingredient-shelf{display:flex;gap:12px;align-items:center;justify-content:center;width:100%}
+.ingredient-token{touch-action:none;position:relative;border:3px solid #d6b097;box-shadow:0 4px #e9c9a8;background:#fffaf4;border-radius:12px;font-size:33px;width:70px;height:61px;flex:none;z-index:4;cursor:grab}
+.ingredient-token.dragging{z-index:50;cursor:grabbing;box-shadow:0 7px 10px #915b3c44}
+.ingredient-token.delivered{opacity:.17;pointer-events:none}
+.touch-work{touch-action:none;cursor:crosshair}
+.chop-board{height:235px;width:min(430px,100%);border:7px solid #b98557;border-radius:19px;background:repeating-linear-gradient(93deg,#eec08b 0 40px,#f5d1a0 40px 80px);box-shadow:0 9px #c1906459,inset 0 0 0 5px #ffe6bd;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.veggie-shape{font-size:95px;filter:drop-shadow(2px 4px 1px #ad774566)}
+.chop-cuts{position:absolute;inset:0;pointer-events:none}
+.chop-cuts span{position:absolute;top:17%;bottom:21%;width:3px;border-left:4px dashed #fff8e8;filter:drop-shadow(1px 1px #865c35)}
+.swipe-hint{position:absolute;bottom:8px;border-radius:20px;background:#fff6e7db;font-size:12px;font-weight:900;padding:5px 16px;color:#976845}
+.stir-pot{width:min(300px,82vw);height:240px;border-radius:50%;border:16px solid #9ca9b0;box-shadow:inset 0 8px 13px #99835d66,0 12px #80716a55,0 0 0 8px #d5c1b2;background:radial-gradient(circle,#f9d0a1,#da965e);position:relative;display:grid;place-items:center;margin:5px auto 19px}
+.pot-inner{width:80%;height:75%;border-radius:50%;background:repeating-conic-gradient(#f9dfaf 0deg 30deg,#f4bc8a 30deg 60deg);display:grid;place-items:center;border:4px solid #da9e6c;box-shadow:inset 0 5px 11px #a1694766}
+#stirContents{font-size:60px;pointer-events:none}
+.stir-spoon{position:absolute;z-index:4;right:14%;top:5%;font-size:45px;transform-origin:-30px 105px;pointer-events:none;filter:drop-shadow(0 2px #7b645a55)}
+.spin-guide{position:absolute;right:-25px;bottom:7px;font-size:36px;color:#bf8157;animation:gentle-bob .8s infinite alternate;pointer-events:none}
+.fry-surface{width:100%;display:flex;align-items:center;flex-direction:column;gap:9px;padding:4px 5px 6px}
+.fry-pan{width:185px;height:120px;border-radius:55% 55% 42% 42%;background:#53565b;border:8px solid #86898e;box-shadow:inset 0 7px 0 #34343a,0 8px #dba1778c;position:relative;display:grid;place-items:center}
+.fry-pan:after{content:"";position:absolute;right:-80px;top:41px;width:82px;height:22px;background:#6c5552;border-radius:10px}
+.fry-food{font-size:62px;animation:gentle-bob .4s infinite alternate}
+.heat-label{font-size:13px;font-weight:900;display:flex;justify-content:space-between;width:min(390px,95%)}
+#heatControl{display:block;width:min(390px,95%);accent-color:#db915e;touch-action:pan-x}
+.heat-legend{display:flex;justify-content:space-between;width:min(390px,95%);font-size:10px;font-weight:900;color:#a48270}
+.correct-heat{color:#ce864e}
+.v3-timing{width:min(380px,100%);height:28px;border-radius:16px;border:3px solid #bd8a63;position:relative;background:linear-gradient(90deg,#f6e8d6 0 39%,#f7be83 39% 61%,#f6e8d6 61% 100%);overflow:hidden;margin:4px auto}
+.v3-timing .timing-marker{position:absolute;top:0;left:0;width:9px;height:100%;background:#6e4b39;z-index:2;animation:v3timing 1.6s linear infinite alternate}
+.v3-timing .timing-goal{position:absolute;left:39%;width:22%;height:100%;border-left:2px dashed #fffbec;border-right:2px dashed #fffbec}
+@keyframes v3timing{from{left:0%}to{left:97%}}
+#cookFlipTip{font-size:11px;color:#b18260;text-align:center;line-height:1.4}
+@media(max-width:800px){.furniture-hotspot span{font-size:9px;padding:2px 5px}.wardrobe-list{grid-template-columns:repeat(3,1fr)}.outfit-option{min-height:172px}.outfit-option img{height:125px}.care-modal{max-height:calc(100dvh - 20px)}}
+@media(max-width:460px){.furniture-hotspot span{font-size:8px;padding:2px 4px}.furniture-bathroom{left:88%;width:12%;height:11%}.furniture-kitchen span{font-size:8px}.furniture-fridge span{font-size:7px}.wardrobe-list{grid-template-columns:repeat(2,1fr);gap:12px;padding:12px}.outfit-option{min-height:185px}.outfit-option img{height:137px}.mini-window{height:278px}.care-scene{height:clamp(260px,40vh,370px);margin:0 11px 12px}.care-gesture-zone{touch-action:none}.care-modal .modal-heading,.v3-cook-modal .modal-heading{padding:11px 14px}.care-modal-foot{font-size:10px}.bath-tub{left:10%;right:10%}.sleep-bed{left:10%;right:10%}.sleep-blanket{left:12%;width:76%}.sleep-light-button{right:4%;top:6%;padding:10px;font-size:11px}.prep-surface{height:240px}.prep-target{height:144px}.ingredient-token{width:66px;height:55px;font-size:28px}.fry-pan{height:100px;width:156px}.fry-food{font-size:48px}}
+@media(prefers-reduced-motion:reduce){.v3-timing .timing-marker{animation:v3timing 3s linear infinite alternate}.care-spark{animation:none}}

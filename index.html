@@ -19,7 +19,7 @@
   <header class="topbar">
     <div class="brand">
       <div class="brand-portrait"><img src="assets/woojae_standing.png" alt="양우재"></div>
-      <div><div class="tiny-heading">A LITTLE COZY DAY · v2.0</div><h1>양우재<span>와 둥의</span> 소소한 하루 <span class="brand-heart">♥</span></h1></div>
+      <div><div class="tiny-heading">A LITTLE COZY DAY · v3.0</div><h1>양우재<span>와 둥의</span> 소소한 하루 <span class="brand-heart">♥</span></h1></div>
     </div>
     <div class="top-facts">
       <div class="fact"><span class="fact-ico">✿</span> <strong id="dayChip">1일차</strong><small id="hourChip">오전 9:00</small></div>
@@ -34,7 +34,7 @@
     <button type="button" class="nav-button" data-page="diary"><span class="nav-icon">✎</span><span>다이어리</span></button>
     <button type="button" class="nav-button" data-page="settings"><span class="nav-icon">⚙</span><span>설정·저장</span></button>
   </nav>
-  <div class="page-note" id="pageNote"><span class="page-note-flower">✽</span> 햇살이 포근한 우리 집. 바닥을 누르면 우재가 걸어가요!</div>
+  <div class="page-note" id="pageNote"><span class="page-note-flower">✽</span> 침대·식탁·소파·냉장고를 직접 눌러 보세요!</div>
   <main>
     <section class="page active" id="homePage" aria-label="우리 집">
       <div class="game-grid">
@@ -43,14 +43,23 @@
           <div class="room" id="room" role="group" aria-label="우재가 지내는 방. 빈 곳을 누르면 이동합니다">
             <img class="room-background" src="assets/room.webp" alt="연한 오렌지 색상의 아늑한 우드톤 방과 식탁, 주방">
             <div id="roomSurface" class="room-surface" aria-hidden="true"></div>
+            <button class="furniture-hotspot furniture-bed" data-furniture="bed" title="침대에서 재우기" aria-label="침대 사용: 이불을 덮어 재우기"><span>☾ 침대</span></button>
+            <button class="furniture-hotspot furniture-sofa" data-furniture="sofa" title="소파에서 쓰다듬기" aria-label="소파 사용: 직접 쓰다듬기"><span>♥ 소파</span></button>
+            <button class="furniture-hotspot furniture-dining" data-furniture="dining" title="식탁에서 먹이기" aria-label="식탁 사용: 요리한 음식 직접 먹이기"><span>♨ 식탁</span></button>
+            <button class="furniture-hotspot furniture-kitchen" data-furniture="kitchen" title="부엌에서 요리하기" aria-label="가스레인지 사용: 요리 미니게임"><span>♨ 주방</span></button>
+            <button class="furniture-hotspot furniture-fridge" data-furniture="fridge" title="냉장고 열기" aria-label="냉장고에서 요리할 재료 보기"><span>❄ 냉장고</span></button>
+            <button class="furniture-hotspot furniture-wardrobe" data-furniture="wardrobe" title="옷장 사용" aria-label="옷장 열고 옷 갈아입기"><span>✿ 옷장</span></button>
+            <button class="furniture-hotspot furniture-bookshelf" data-furniture="bookshelf" title="책장에서 다이어리" aria-label="책장 열고 다이어리 보기"><span>✎ 책장</span></button>
+            <button class="furniture-hotspot furniture-bathroom" data-furniture="bathroom" title="욕실로 이동" aria-label="욕실로 이동하여 직접 목욕시키기"><span>🚿 욕실</span></button>
             <button id="plush" type="button" class="room-object plush" title="대파 인형과 놀기" aria-label="눈 코 입이 있는 대파 인형과 놀기"><img src="assets/leek_plush.png" alt="대파 인형"><span class="obj-label">대파 인형</span></button>
             <button id="doong" type="button" class="room-object doong" title="둥 쓰다듬기" aria-label="하얀 포메라니안 둥 쓰다듬기"><img id="doongImg" src="assets/doong_sit.png" alt="하얀 포메라니안 둥"><span class="obj-label">둥</span></button>
             <button id="woojae" type="button" class="room-object woojae" title="양우재와 대화" aria-label="양우재와 대화하기"><img id="woojaeImg" src="assets/woojae_hoodie.png" alt="양우재"><span class="obj-label">양우재</span></button>
             <div id="foodOnTable" class="table-food" aria-hidden="true"></div>
+            <div id="diningAnimation" class="dining-animation hidden" aria-live="polite"><img id="diningEater" src="assets/woojae_eating.png" alt="우재가 식탁에서 음식을 먹고 있어요"><span class="dining-food" id="diningFood">🍳</span><span class="chew-hearts">♥　✿</span></div>
             <div class="room-bubble" id="roomBubble" aria-live="polite">오늘도 같이 있어 줄 거지? ♡</div>
             <div class="room-hint">✧ 빈 바닥을 톡 눌러 이동!</div>
           </div>
-          <div class="under-room"><span><span class="dot alive"></span> 양우재와 둥이 함께 지내는 공간</span><span>탭 · 클릭 이동 지원</span></div>
+          <div class="under-room"><span><span class="dot alive"></span> 양우재와 둥이 함께 지내는 공간</span><span>가구 누르기 · 직접 돌보기 · 드래그 요리</span></div>
         </div>
         <aside class="sidebar">
           <section class="side-card status-card"><div class="side-head">♥ 양우재의 상태 <small>STATUS</small></div>
@@ -73,7 +82,7 @@
     </section>
 
     <section class="page" id="cookPage" aria-label="요리하기">
-      <div class="inner-title"><div><div class="tiny-heading">COOKING WITH LOVE</div><h2>우재에게 맛있는 밥을 만들어 주세요! <span>♨</span></h2><p>세 가지 미니게임을 완료하면 음식을 만들 수 있어요.</p></div><button class="small-cream" data-page="home">⌂ 방으로</button></div>
+      <div class="inner-title"><div><div class="tiny-heading">COOKING WITH LOVE</div><h2>우재에게 맛있는 밥을 만들어 주세요! <span>♨</span></h2><p>재료를 끌어놓고, 직접 썰고, 원을 그려 섞고, 불을 조절해 뒤집어 주세요.</p></div><button class="small-cream" data-page="home">⌂ 방으로</button></div>
       <div class="cook-layout">
         <div class="cook-board">
           <div class="board-header">✿ 오늘의 레시피 <span>따뜻한 집밥</span></div>
@@ -84,20 +93,20 @@
           <div class="food-big" id="foodPreview">🍳</div>
           <h3 id="recipeTitle">오므라이스</h3><p id="recipeDesc">보들보들한 달걀과 따뜻한 밥!</p>
           <div class="tag-list" id="ingredientTags"></div>
-          <button class="primary-action" id="startCooking">이 요리 만들기 <span>→</span></button>
+          <button class="primary-action" id="startCooking">직접 조리 시작! <span>→</span></button>
           <div class="cook-inventory">완성된 음식 <strong id="inventoryBadge">0개</strong><div id="inventoryList"></div></div>
         </div>
       </div>
     </section>
 
     <section class="page" id="closetPage" aria-label="옷장">
-      <div class="inner-title"><div><div class="tiny-heading">DRESS UP</div><h2>오늘은 어떤 옷을 입을까요? <span>✿</span></h2><p>의상을 누르면 양우재의 옷이 변경되고 자동 저장돼요.</p></div><button class="small-cream" data-page="home">⌂ 방으로</button></div>
+      <div class="inner-title"><div><div class="tiny-heading">DRESS UP</div><h2>오늘은 어떤 옷을 입을까요? <span>✿</span></h2><p>옷 이미지에 여백을 더해 잘리지 않도록 정리했어요. 고르면 자동 저장됩니다.</p></div><button class="small-cream" data-page="home">⌂ 방으로</button></div>
       <div class="wardrobe-grid"><div class="wardrobe-preview"><div class="mini-window"><img id="closetCharacter" src="assets/woojae_hoodie.png" alt="현재 착용한 옷"></div><p id="closetStatus">데일리 후드</p></div><div class="wardrobe-list" id="outfitList"></div></div>
     </section>
 
     <section class="page" id="diaryPage" aria-label="다이어리">
       <div class="inner-title"><div><div class="tiny-heading">LITTLE MEMORIES</div><h2>양우재와 둥의 다이어리 <span>✎</span></h2><p>오늘의 요리, 일상, 놀이가 여기에 기록됩니다.</p></div><button class="small-cream" data-page="home">⌂ 방으로</button></div>
-      <div class="diary-layout"><div class="diary-cover"><img src="assets/woojae_sitting.png" alt="앉아 있는 양우재"><img src="assets/doong_sit.png" alt="포메라니안 둥"><p>두근두근, 오늘의 추억도 차곡차곡</p></div><div class="diary-entries" id="diaryEntries"></div></div>
+      <div class="diary-layout"><div class="diary-cover"><img src="assets/woojae_sitting.png" alt="앉아 있는 양우재"><img src="assets/doong_sit.png" alt="포메라니안 둥"><p>직접 돌보고 요리한 날의 추억을 기록해요</p></div><div class="diary-entries" id="diaryEntries"></div></div>
     </section>
 
     <section class="page" id="settingsPage" aria-label="설정 및 저장">
@@ -110,7 +119,8 @@
   </main>
   <footer><span>✿ 하루하루, 소중한 우리들의 작은 이야기</span><span id="footerSave">자동 저장 사용 중</span></footer>
 </div>
-<div class="overlay hidden" id="cookOverlay" role="dialog" aria-modal="true" aria-labelledby="miniTitle"><div class="mini-modal"><div class="modal-heading"><span id="miniTitle">요리 미니게임</span><button id="closeMini" aria-label="닫기">×</button></div><div class="modal-recipe" id="miniRecipe"></div><div class="mini-prompt" id="miniPrompt"></div><div class="mini-progress"><i id="miniProgress"></i></div><div class="play-area" id="playArea"><div class="play-illustration" id="playIllustration">🥕</div><div class="play-tip" id="playTip"></div><button class="primary-action mini-hit" id="miniHit">썰기!</button></div><div class="mini-foot"><span id="miniStep">1 / 3 단계</span><span>정성을 담아 요리해요 ♡</span></div></div></div>
+<div class="overlay hidden" id="careOverlay" role="dialog" aria-modal="true" aria-labelledby="careTitle"><div class="care-modal"><div class="modal-heading"><span id="careTitle">돌보기 미니게임</span><button id="closeCare" aria-label="돌보기 화면 닫기">×</button></div><div id="careStep" class="care-step">1단계</div><div id="carePrompt" class="care-prompt">직접 손으로 돌봐 주세요.</div><div class="care-meter"><i id="careProgress"></i></div><div id="careScene" class="care-scene"></div><div class="care-modal-foot">✿ 손가락으로 끌기 / 마우스로 드래그해서 즐겨요</div></div></div>
+<div class="overlay hidden" id="cookOverlay" role="dialog" aria-modal="true" aria-labelledby="miniTitle"><div class="mini-modal v3-cook-modal"><div class="modal-heading"><span id="miniTitle">직접 만드는 요리 교실</span><button id="closeMini" aria-label="닫기">×</button></div><div class="modal-recipe" id="miniRecipe"></div><div class="mini-prompt" id="miniPrompt"></div><div class="mini-progress"><i id="miniProgress"></i></div><div class="play-area" id="playArea"><div class="play-illustration" id="playIllustration">🥕</div><div class="play-tip" id="playTip"></div><button class="primary-action mini-hit" id="miniHit">썰기!</button></div><div class="mini-foot"><span id="miniStep">1 / 3 단계</span><span>직접 요리한 음식은 식탁에서 먹여요 ♡</span></div></div></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script src="game.js" defer></script>
 </body></html>
