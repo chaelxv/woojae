@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='woojae-doong-v5-20261103-1';
+const CACHE='woojae-doong-v5-3-20261104';
 const ASSETS=['./','./index.html','./styles.css','./game.js','./manifest.webmanifest','./icon-192.png','./icon-512.png',
 './assets/scenes/home.webp','./assets/scenes/closet.webp','./assets/scenes/bath.webp','./assets/scenes/sleep.webp','./assets/scenes/feed.webp',
 './assets/characters/outfits/hoodie.png','./assets/characters/expressions/idle.png','./assets/props/doong_sit.png'];

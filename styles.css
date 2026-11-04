@@ -16,3 +16,36 @@
 .room-floor{left:28%;width:65%;top:47%;height:48%;}
 
 .home-decor{position:absolute;z-index:2;transform:translate(-50%,-100%);max-width:12%;height:auto;object-fit:contain;filter:drop-shadow(0 5px 4px rgba(109,73,48,.22));pointer-events:none;}
+
+/* v5.3: complete uncut food sprites and cozy plush furniture */
+.recipe-card img,.food-choice img{object-fit:contain !important;object-position:center;background:#fff8ef;padding:4px;border-radius:16px}
+.recipe-card{min-height:102px;overflow:hidden}.recipe-card img{flex:0 0 92px;width:92px;height:82px}
+.food-choice{min-height:100px;overflow:hidden}.food-choice img{flex:0 0 112px;width:112px;height:88px}
+.feed-layout .serving-plate{background:transparent;border:0;box-shadow:none;overflow:visible;width:62%;height:30%;bottom:10%;left:19%;padding:0}
+.feed-layout .serving-plate img{width:100%;height:100%;object-fit:contain;object-position:center;mix-blend-mode:normal;filter:drop-shadow(0 9px 7px rgba(121,73,43,.2))}
+.assemble-zone img{object-fit:contain;object-position:center;width:270px;height:185px;max-width:90%;filter:drop-shadow(0 7px 4px rgba(146,80,38,.15))}
+.shop-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.shop-item{background:linear-gradient(155deg,#fffdf8,#fff2df);border:2px solid #e7bb96;border-radius:22px;padding:19px 15px 18px;box-shadow:0 6px 19px #c78e6e14;display:flex;align-items:center;flex-direction:column;min-height:370px}
+.shop-item .shop-art{width:100%;height:180px;min-height:180px;padding:2px;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#fff9ef 0%,transparent 78%)}
+.shop-item .shop-art img{width:95%;height:175px;max-width:225px;object-fit:contain;filter:drop-shadow(0 6px 5px #a97e5630)}
+.shop-item h3{min-height:44px;margin:9px 0 2px;font-size:19px}
+.shop-item p{min-height:76px;max-width:270px;margin:5px auto 10px;line-height:1.6;color:#95684e;font-size:13px}
+.shop-item button{margin-top:auto;min-width:156px}
+.home-decor-item{position:absolute;z-index:4;transform:translate(-50%,-100%);background:none;border:0;padding:0;cursor:pointer;touch-action:none;user-select:none;filter:drop-shadow(0 6px 4px #70422d45);transition:filter .16s}
+.home-decor-item img{display:block;width:100%;height:auto;object-fit:contain;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.home-decor-item.editing{outline:2px dashed #eba664;outline-offset:5px;border-radius:14px;cursor:grab;filter:drop-shadow(0 4px 3px #a36b3655)}
+.home-decor-item.dragging{z-index:12;cursor:grabbing;filter:drop-shadow(0 10px 12px #ad663a77)}
+.cook-pan>img{width:min(95%,245px);height:170px;object-fit:contain;filter:drop-shadow(0 3px 4px #532f2055);pointer-events:none}
+.cook-pot{position:relative;height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.pot-steam{color:#d29c6e;letter-spacing:10px;animation:bubbleRise 1.2s infinite alternate;font-size:25px}
+.pot-bowl{border:9px solid #8c6046;border-radius:40px 40px 90px 90px;background:linear-gradient(165deg,#fff1d8,#ddaa7a);width:min(100%,335px);height:187px;display:grid;place-items:center;box-shadow:inset 0 -12px 0 #b57f5450,0 9px 2px #94735830}
+.pot-bowl img{width:85%;height:98%;object-fit:contain;filter:drop-shadow(0 4px 5px #b47c5040)}
+.pot-label{font-weight:900;color:#aa7653;font-size:12px}
+@media(max-width:1050px){.shop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.shop-grid{grid-template-columns:1fr 1fr;gap:9px}.shop-item{padding:10px 7px;min-height:320px}.shop-item .shop-art{height:128px;min-height:128px}.shop-item .shop-art img{height:125px}.shop-item h3{font-size:14px;min-height:36px}.shop-item p{font-size:11px;min-height:78px}.shop-item button{min-width:0;width:95%;font-size:12px}.recipe-card img{flex-basis:74px;width:74px;height:65px}.food-choice img{flex-basis:88px;width:88px;height:73px}.pot-bowl{height:160px}.cook-pot{height:215px}.cook-pan>img{width:85%;height:140px}}
+@media(max-width:375px){.shop-grid{grid-template-columns:1fr}.shop-item{min-height:285px}}
+
+/* Keep characters and navigation available above placed plush furniture. */
+.home-decor-item{z-index:3}
+.room-art .room-person,.room-art .room-dog,.room-art .room-plush{z-index:5}
+.room-art .room-spot{z-index:7}
