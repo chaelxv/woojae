@@ -49,3 +49,80 @@
 .home-decor-item{z-index:3}
 .room-art .room-person,.room-art .room-dog,.room-art .room-plush{z-index:5}
 .room-art .room-spot{z-index:7}
+
+
+/* v5.5 — fully reconstructed dinner illustration.  The background contains
+   no baked-in character, food, message or UI, so dynamic meals stay aligned. */
+.feed-layout .feeding-scene {
+  position: relative;
+  isolation:isolate;
+  width:100%;
+  min-height:0;
+  aspect-ratio: 16 / 10;
+  background: #ffe6ce url('assets/scenes/feed_clean.webp') center center / cover no-repeat !important;
+  border:3px solid #dca87f;
+  overflow:hidden;
+  border-radius:24px;
+}
+.feed-layout .feeding-scene::before,
+.feed-layout .feeding-scene::after{ content:none !important; display:none !important; }
+.feed-layout .feeding-scene .feed-center-soft{display:none !important;}
+.feed-layout .feeding-character{
+  position:absolute;
+  left:50%;top:27%;width:43%;height:55%;
+  transform:translateX(-50%);object-fit:contain;object-position:center bottom;
+  z-index:2;pointer-events:none;filter:drop-shadow(0 7px 5px #65402933);
+}
+.feed-layout .feeding-dog{
+  position:absolute;
+  left:7%;top:66%;width:19%;height:20%;
+  object-fit:contain;z-index:4;pointer-events:none;
+  filter:drop-shadow(0 5px 5px #724a3a33);
+}
+.feed-layout .serving-plate{
+  position:absolute;
+  display:flex;align-items:center;justify-content:center;
+  left:50% !important;bottom:3% !important;top:auto;
+  transform:translateX(-50%);
+  width:48% !important;height:32% !important;
+  border:0 !important;background:transparent !important;
+  padding:0 !important;overflow:visible !important;
+  box-shadow:none !important;border-radius:0 !important;
+  z-index:6;
+}
+.feed-layout .serving-plate.bite{transform:translateX(-50%) scale(.94);}
+.feed-layout .serving-plate img{
+  display:block;width:100%;height:100%;object-fit:contain;
+  object-position:center center;mix-blend-mode:normal;
+  border-radius:0;filter:drop-shadow(0 10px 6px #8a5c3544);
+}
+.feed-layout .feed-bubble{
+  position:absolute;left:auto !important;right:7%;top:15%;
+  max-width:32%;padding:10px 14px;
+  z-index:8;font-size:clamp(11px,1.1vw,17px);
+  text-align:center;color:#815038;
+  background:#fff9edec;border:2px solid #e3b58f;
+  border-radius:20px;box-shadow:0 5px 12px #a87b5922;
+}
+.feed-layout .feed-bubble::after{
+  content:'';position:absolute;bottom:-10px;left:25%;
+  border:10px solid transparent;border-top-color:#fff9ed;
+  border-bottom:0;
+}
+@media(max-width:1050px){
+  .feed-layout .feeding-scene{aspect-ratio:16/10;min-height:0;}
+}
+@media(max-width:680px){
+  .feed-layout .feeding-scene{aspect-ratio:5/6;min-height:0;background-size:auto 100% !important;background-position:center center !important;}
+  .feed-layout .feeding-character{left:50%;top:28%;width:65%;height:49%;}
+  .feed-layout .feeding-dog{left:3%;top:69%;width:26%;height:20%;}
+  .feed-layout .serving-plate{left:50% !important;bottom:7% !important;width:70% !important;height:30% !important;}
+  .feed-layout .feed-bubble{left:auto !important;right:3%;top:16%;max-width:46%;padding:6px 9px;font-size:10px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .feed-layout .feeding-character{transition:none !important;}
+}
+
+/* Keep the seated character centered while the bite animation runs. */
+.feed-layout .feeding-character.chew{animation:feedChewCentered .32s ease-in-out 2;}
+@keyframes feedChewCentered{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-7px)}}
